@@ -1,0 +1,15 @@
+---
+# tasks file for puppet
+
+- name: Configura Repositorio
+  hosts: all  
+  include: repo.yaml
+
+- name: Instala Puppet Mestre
+#  hosts: devops
+  include: mestre.yaml
+
+- name: Instala Puppet Agent
+#  hosts: all
+  include: agent.yaml
+

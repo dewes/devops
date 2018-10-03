@@ -1,0 +1,12 @@
+---
+
+- name: Muda nome do hostname
+  hosts: "{{inv}}"
+  vars:
+   - inv: maquina
+   - nome: nome
+  tasks:
+   - name: Mundando o hostname
+     hostname:
+       name: "{{nome}}"
+

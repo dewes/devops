@@ -1,0 +1,35 @@
+---
+- name: Copia arquivo
+  copy:
+    src: /etc/ansible/roles/novo.html
+    dest: /var/www/html/novo.html
+    #owner: www-data
+    #group: www-data
+    mode: 0755
+
+#- name: Muda conteudo
+#  lineinfile:
+#    path: /var/www/html/novo.html
+#    regexp: '^Apache2 '
+#    insertafter: '^Apache2 '
+#    line: 'INFRAESTRUTURA AGIL COM DEVOPS'
+
+- name: inicializa serviço 
+  service:
+    name: apache2
+    state: restarted
+  when: ansible_os_family ==  "Debian"
+
+- name: Restart service httpd, in all cases
+  service:
+    name: httpd
+    state: restarted
+  when: ansible_os_family ==  "RedHat"
+
+- name: Restart service httpd, in all cases
+  service:
+    name: firewalld
+    state: stopped
+  when: ansible_os_family ==  "RedHat"
+
+

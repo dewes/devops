@@ -1,0 +1,38 @@
+---
+
+- name: Segundo Playbook
+  hosts: all
+  vars: 
+   - nome: teste
+  tasks:
+   - name: Criando usuarios
+     user:
+       name: developer
+       state: present
+   - name: Criando usuarios 2
+     user:
+       name: devops
+       state: present
+   - name: Criando usuarios 3
+     user:
+       name:  "{{nome}}"
+       state: present
+
+- name: Instala repositorio epel-release
+  hosts: automation
+  tasks:
+   - name: Repositorio EPEL
+     yum: 
+       name: epel-release
+
+- name: Instala pacotes geral
+  hosts: all
+  tasks:
+   - name: instalando tudo
+     package:
+       name:
+        - vim
+        - htop
+        - sl
+        - cowsay
+       state: present

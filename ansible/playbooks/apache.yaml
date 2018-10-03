@@ -1,0 +1,6 @@
+---
+
+- name: Instalando Site DEVOPS
+  hosts: all
+  roles:
+    - web

@@ -1,0 +1,7 @@
+---
+
+- name: Instala os agentes
+  package:
+    name: puppet-agent
+    update_cache: yes 
+
