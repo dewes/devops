@@ -1,0 +1,25 @@
+---
+
+- name: Instala Jenkins
+  hosts: automation
+  tasks:
+    - name: instala wget
+      yum:
+        name: wget
+        state: present
+    - name: configura repo
+      shell: wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+    - name: importa chaves
+      shell: rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+    - name: instala jenkins
+      yum:
+        name:
+          - java 
+          - jenkins
+        state: present
+    - name: roda servico
+      service:
+        name: jenkins
+        state: started
+
+
