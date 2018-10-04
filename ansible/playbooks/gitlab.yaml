@@ -1,0 +1,28 @@
+---
+
+- name: Arruma repositorio
+  hosts: devops
+  tasks:
+    - name: instala dep
+      package:
+         name:
+           - curl
+           - openssh-server
+           - ca-certificates
+           - postfix
+         update_cache: yes
+    - name: baixa configurador
+      get_url:
+           url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
+           dest: /tmp/script.deb.sh
+           mode: 0755
+    - name: roda configurador
+      shell: 'bash /tmp/script.deb.sh'
+    - name: instala gitlab
+      apt:
+        name: gitlab-ce
+        update_cache: yes
+      environment:
+        EXTERNAL_URL: http://devops.dexter.com.br
+
+
