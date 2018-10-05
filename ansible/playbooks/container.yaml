@@ -1,0 +1,7 @@
+---
+
+- name: executando role dos containers
+  hosts: docker
+  roles:
+    - container
+
